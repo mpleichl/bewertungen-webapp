@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Bereich – Kommentare verwalten</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 30px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .bewertung {
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin: 10px auto;
+      max-width: 800px;
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .bewertung .meta {
+      font-size: 14px;
+      color: #666;
+    }
+
+    button.delete-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button.delete-btn:hover {
+      background-color: #c0392b;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🛠️ Admin-Bereich – Bewertungen verwalten</h1>
+  <div id="bewertungen"></div>
+
+  <script>
+    const ADMIN_PASSWORD = "blume123"; // 🔐 Hier Passwort festlegen
+
+    const eingabe = prompt("🔒 Admin Passwort:");
+    if (eingabe !== ADMIN_PASSWORD) {
+      document.body.innerHTML = "<h2>❌ Zugriff verweigert</h2>";
+      throw new Error("Falsches Passwort");
+    }
+
+    function ladeBewertungen() {
+      fetch("/api/bewertungen")
+        .then(res => res.json())
+        .then(data => {
+          const container = document.getElementById("bewertungen");
+          container.innerHTML = "";
+
+          data.forEach(eintrag => {
+            const div = document.createElement("div");
+            div.className = "bewertung";
+            div.innerHTML = `
+              <strong>${eintrag.name}</strong><br>
+              <div class="meta">ID: ${eintrag.id} – ${new Date(eintrag.created_at).toLocaleString()}</div>
+              <p>${eintrag.kommentar.replace(/\n/g, "<br>")}</p>
+              <div>
+                💰 Preis-Leistung: ${"★".repeat(eintrag.preis_leistung)}<br>
+                🎨 Optik: ${"★".repeat(eintrag.optik)}<br>
+                🛋️ Komfort: ${"★".repeat(eintrag.komfort)}
+              </div>
+              <button class="delete-btn" onclick="loescheBewertung(${eintrag.id})">🗑️ Löschen</button>
+            `;
+            container.appendChild(div);
+          });
+        });
+    }
+
+    function loescheBewertung(id) {
+      if (!confirm("⚠️ Diese Bewertung wirklich löschen?")) return;
+
+      fetch(`/api/bewertungen/${id}`, {
+        method: "DELETE"
+      })
+      .then(res => {
+        if (res.ok) {
+          alert("✅ Bewertung gelöscht");
+          ladeBewertungen();
+        } else {
+          alert("❌ Fehler beim Löschen");
+        }
+      });
+    }
+
+    ladeBewertungen();
+  </script>
+</body>
+</html>
