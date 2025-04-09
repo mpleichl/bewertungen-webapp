@@ -161,3 +161,22 @@ body {
     margin-top: 8px;
     text-align: center;
 }
+
+@media (max-width: 768px) {
+  .floating-image {
+    position: static;         /* nicht mehr absolut */
+    width: 80% !important;    /* Breite anpassen */
+    margin: 20px auto;        /* zentrieren */
+  }
+
+  .floating-image img {
+    width: 100%;              /* skaliert automatisch */
+    height: auto;
+  }
+
+  .persDescription,
+  .comment-box {
+    font-size: 18px;          /* evtl. Schrift leicht verkleinern */
+    padding: 10px;
+  }
+}
