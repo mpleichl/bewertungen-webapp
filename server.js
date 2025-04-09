@@ -73,7 +73,26 @@ app.post("/api/bewertungen", async (req, res) => {
   }
 });
 
-// Optional: Fallback für andere Routen → index.html
+// ✅ NEU: DELETE-Endpunkt zum Löschen einer Bewertung
+app.delete("/api/bewertungen/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await pool.query("DELETE FROM bewertungen WHERE id = $1", [id]);
+
+    if (result.rowCount === 0) {
+      return res.status(404).json({ message: "Eintrag nicht gefunden" });
+    }
+
+    console.log(`🗑️ Bewertung mit ID ${id} gelöscht`);
+    res.status(200).json({ message: "Erfolgreich gelöscht" });
+  } catch (err) {
+    console.error("❌ Fehler beim DELETE:", err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Fallback für andere Routen → index.html
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
