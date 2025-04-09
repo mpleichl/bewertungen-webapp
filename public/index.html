@@ -113,38 +113,96 @@
 
     <script>
         function postComment() {
-    const name = document.getElementById("name").value.trim();
-    const message = document.getElementById("message").value.trim();
-    const formattedMessage = message.replace(/\n/g, "<br>");
-    const preis = document.getElementById("preisRating").value;
-    const optik = document.getElementById("optikRating").value;
-    const komfort = document.getElementById("komfortRating").value;
+            const name = document.getElementById("name").value.trim();
+            const message = document.getElementById("message").value.trim();
+            const formattedMessage = message.replace(/\n/g, "<br>");
+            const preis = document.getElementById("preisRating").value;
+            const optik = document.getElementById("optikRating").value;
+            const komfort = document.getElementById("komfortRating").value;
+    
+            if (!name || !message) {
+                alert("Bitte gib einen Namen und eine Nachricht ein!");
+                return;
+            }
+    
+            // ➕ Backend-POST hinzufügen
+            fetch("/api/bewertungen", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name: name,
+                    kommentar: message,
+                    preis_leistung: parseInt(preis),
+                    optik: parseInt(optik),
+                    komfort: parseInt(komfort)
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log("✅ Kommentar gespeichert mit ID:", data.id);
+    
+                // Nur wenn erfolgreich, dann Kommentar anzeigen:
+                const commentBox = `
+                    <div class="bewertung-box">
+                        <strong class="bewertung-user">${name}</strong>
+                        <p class="bewertung-text">${formattedMessage}</p>
+                        <div class="bewertung-kategorien">
+                            <div><strong>Preis-Leistung:</strong> ${'★'.repeat(preis)}</div>
+                            <div><strong>Optik:</strong> ${'★'.repeat(optik)}</div>
+                            <div><strong>Komfort:</strong> ${'★'.repeat(komfort)}</div>
+                        </div>
+                    </div>
+                `;
+                document.getElementById("comments-list").innerHTML += commentBox;
+    
+                // Felder zurücksetzen
+                document.getElementById("name").value = "";
+                document.getElementById("message").value = "";
+                document.getElementById("preisRating").value = "1";
+                document.getElementById("optikRating").value = "1";
+                document.getElementById("komfortRating").value = "1";
+            })
+            .catch(error => {
+                console.error("❌ Fehler beim Speichern:", error);
+                alert("Beim Speichern ist etwas schiefgelaufen!");
+            });
+        }
 
-    if (!name || !message) {
-        alert("Bitte gib einen Namen und eine Nachricht ein!");
-        return;
-    }
 
-    const commentBox = `
-        <div class="bewertung-box">
-            <strong class="bewertung-user">${name}</strong>
-            <p class="bewertung-text">${formattedMessage}</p>
-            <div class="bewertung-kategorien">
-                <div><strong>Preis-Leistung:</strong> ${'★'.repeat(preis)}</div>
-                <div><strong>Optik:</strong> ${'★'.repeat(optik)}</div>
-                <div><strong>Komfort:</strong> ${'★'.repeat(komfort)}</div>
-            </div>
-        </div>
-    `;
+        // ADD loading the SQL entries:
 
-    document.getElementById("comments-list").innerHTML += commentBox;
+        window.addEventListener("DOMContentLoaded", () => {
+    loadComments();
+});
 
-    // Zurücksetzen der Felder
-    document.getElementById("name").value = "";
-    document.getElementById("message").value = "";
-    document.getElementById("preisRating").value = "1";
-    document.getElementById("optikRating").value = "1";
-    document.getElementById("komfortRating").value = "1";
+function loadComments() {
+    fetch("/api/bewertungen")
+        .then(res => res.json())
+        .then(data => {
+            const commentsList = document.getElementById("comments-list");
+            commentsList.innerHTML = ""; // Leeren und neu aufbauen
+
+            data.forEach(bewertung => {
+                const formattedMessage = bewertung.kommentar.replace(/\n/g, "<br>");
+                const commentBox = `
+                    <div class="bewertung-box">
+                        <strong class="bewertung-user">${bewertung.name}</strong>
+                        <p class="bewertung-text">${formattedMessage}</p>
+                        <div class="bewertung-kategorien">
+                            <div><strong>Preis-Leistung:</strong> ${'★'.repeat(bewertung.preis_leistung)}</div>
+                            <div><strong>Optik:</strong> ${'★'.repeat(bewertung.optik)}</div>
+                            <div><strong>Komfort:</strong> ${'★'.repeat(bewertung.komfort)}</div>
+                        </div>
+                    </div>
+                `;
+                commentsList.innerHTML += commentBox;
+            });
+        })
+        .catch(err => {
+            console.error("❌ Fehler beim Laden der Kommentare:", err);
+        });
 }
     </script>
 </body>
