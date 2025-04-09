@@ -1,2 +1,15 @@
-node_modules
+# Node modules (werden automatisch durch npm install erstellt)
+node_modules/
+
+# SQLite-Datenbank (lokal erzeugt, sollte nicht ins Repo)
 db.sqlite
+
+# Lockfile kann auch ausgeschlossen werden, optional:
+package-lock.json
+
+# Umgebungsvariablen (z. B. für späteres .env)
+.env
+
+# Systemdateien (Windows/Mac)
+.DS_Store
+Thumbs.db
