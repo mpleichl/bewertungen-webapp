@@ -15,9 +15,6 @@
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "npm install express sqlite3 cors"
-  },
+  "repository": {},
   "description": ""
 }
