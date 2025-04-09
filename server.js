@@ -1,17 +1,17 @@
-
-fetch("https://ratemybenji.onrender.com/api/bewertungen")
 const express = require("express");
+const path = require("path");
 const sqlite3 = require("sqlite3").verbose();
 const cors = require("cors");
 
 const app = express();
-app.use(express.static("public"));
 const port = 3000;
 
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static("public"));
+
+// Statische Dateien aus dem 'public'-Verzeichnis bereitstellen
+app.use(express.static(path.join(__dirname, "public")));
 
 // DB initialisieren
 const db = new sqlite3.Database("./db.sqlite");
