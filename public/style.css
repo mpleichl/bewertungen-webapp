@@ -1,0 +1,163 @@
+:root {
+    --img-size: 20%;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: beige;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.funny-img {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+/* Gesamtcontainer für Bewertungen */
+#bewertungen {
+  max-width: 100%;  /* Damit der Container nicht über die elterliche Breite hinausgeht */
+  font-family: cursive;  /* Verspielte, handschriftähnliche Schriftart für den gesamten Bereich */
+}
+
+
+.comment-box {
+    position: relative; /* für floating-image */
+    border: 2px solid #8893a8;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 20px auto;
+    max-width: 1200px;
+    background-color: #b7b9bb;
+    text-align: left;
+    font-family: cursive;
+    font-size:20px;
+    overflow: hidden;
+}
+
+/* Einzelne Bewertungsbox */
+.bewertung-box {
+  border: 1px solid #ccc;        /* Dünner grauer Rahmen um die Box :contentReference[oaicite:2]{index=2}*/
+  border-radius: 5px;           /* Leicht abgerundete Ecken für ein modernes, weiches Aussehen */
+  padding: 1rem;                /* Innenabstand für saubere Lesbarkeit des Inhalts */
+  margin-bottom: 1rem;          /* Außenabstand zur nächsten Box */
+  background: #fdfdfd;          /* Hellhintergrund (fast weiß) für Kontrast zum Seitenhintergrund */
+  box-sizing: border-box;       /* Padding und Border in die Gesamtbreite einrechnen */
+  overflow-wrap: break-word;
+}
+
+/* Name des Nutzers */
+.bewertung-user {
+  display: block;
+  font-weight: bold;            /* Name hervorheben */
+  font-size: 1.1em;             /* Schrift leicht größer als Standardtext */
+  margin-bottom: 0.3em;         /* kleiner Abstand unter dem Namen */
+}
+
+/* Kommentartext */
+.bewertung-text {
+  margin: 0 0 0.8em 0;          /* Standard-Absatzabstand unten, kein Abstand oben */
+  line-height: 1.4;             /* Etwas erhöhter Zeilenabstand für Lesbarkeit */
+  white-space: normal;       /* Standard-Zeilenumbruch zulassen */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Container für die Kategorien und Sterne */
+.bewertung-kategorien {
+  /* optional: flex layout, falls die Kategorien nebeneinander statt untereinander stehen sollen */
+  /* display: flex;
+     flex-wrap: wrap;
+     gap: 0.5rem; */
+}
+
+/* Einzelne Kategorie-Zeile (Sternbewertung) */
+.bewertung-kategorien > div {
+  margin-bottom: 0.3em;         /* Leichter Abstand nach jeder Kategorien-Zeile */
+  color: #555;                  /* Textfarbe etwas abgedunkelt (für Labels) */
+}
+
+/* Sternsymbole innerhalb der Kategorien 
+   (füllt Sterne können z.B. eine andere Farbe bekommen als leere) */
+.bewertung-kategorien strong {
+  color: #333;                  /* Kategorie-Label in etwas dunklerer Schrift */
+  font-weight: normal;          /* Label nicht zu fett, da im Fließtext */
+}
+.bewertung-kategorien span,
+.bewertung-kategorien .star {
+  color: orange;                /* Alle Sterne orange (typische Bewertungsfarbe) */
+  font-size: 1.1em;             /* Sterne etwas größer darstellen */
+}
+
+
+.persDescription {
+    position: relative; /* für floating-image */
+    border: 2px solid #8893a8;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px auto;
+    max-width: 1200px;
+    background-color: #b7b9bb;
+    text-align: left;
+    font-family: cursive;
+    font-size:20px;
+    overflow: hidden;
+}
+
+.product-features {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+.center-text {
+    text-align: center;
+    font-size: 20px;
+}
+
+.floating-image {
+    position: absolute;
+    z-index: 10;
+    text-align: center;
+}
+
+.floating-image img {
+    width: 100%; /* wird durch umgebenden style="width: ..." gesetzt */
+    height: auto;
+    border-radius: 8px;
+    display: block;
+}
+
+.floating-image .caption {
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
+    text-align: center;
+}
+
+/* Optional: Bild im normalen Lesefluss */
+.descrPicture {
+    display: inline-block;
+    margin: 20px 0;
+    max-width: 100%;
+    text-align: center;
+}
+
+.descrPicture img {
+    height: auto;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
+}
+
+.caption {
+    font-size: 14px;
+    color: #555;
+    margin-top: 8px;
+    text-align: center;
+}

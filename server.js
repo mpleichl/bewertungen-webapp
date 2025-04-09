@@ -1,3 +1,5 @@
+app.use(express.static("public"));
+fetch("https://ratemybenji.onrender.com/api/bewertungen")
 const express = require("express");
 const sqlite3 = require("sqlite3").verbose();
 const cors = require("cors");

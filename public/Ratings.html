@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ois guade du heisl</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <a href="Test.html">Startseite</a> 
+
+    <h1> Kunden und Benutzererfahrungen </h1>
+    <div class="persDescription">
+
+        <!-- Frei positionierbares Bild -->
+        <div class="floating-image" style="top: 30px; right: 30px; width: 15%;">
+            <img src="Flagge_Brachner.png">
+            <p class="caption">Vereinigtes Brachnerisches Königreich</p>
+        </div>
+
+        <div class="floating-image" style="top: 325px; right: 320px; width: 15%;">
+            <img src="Agressiv2.png">
+            <p class="caption">Früher: Agressiv</p>
+        </div>
+
+        <div class="floating-image" style="top: 280px; right: 50px; width: 16%;">
+            <img src="ChillDude.jpg">
+            <p class="caption">Heute: "Chill Dude"</p>
+        </div>
+
+        <!-- Haupttext -->
+        <p class="center-text"><strong>Produktdetails und Steckbrief</strong></p>
+    
+        <p>
+            Alter: 20
+            Größe: 175cm (?)<br><br>
+            Gewicht: Unbekannt (Datenschutz)<br><br>
+            Geburtsland: Österreich<br><br>
+            Nationalangehörigkeit: Vereinigtes Brachnerisches Königreich (VBK)<br><br>
+            <em>Gesundheitszustand:</em> Kritisch – <br>
+            In jüngster Vergangenheit starker Blutverlust durch Schnittwunden<br>
+            Psychisch mittlerweile eigentlich a hoibwegs stabil<br>
+            <br>
+            Zustand: Gebraucht (eher für Bastler gedacht)<br>
+        </p>
+    
+        <p>
+            <strong>Sonstige Bemerkungen:</strong><br><br>
+            In der Vergangenheit immer wieder Probleme mit Agression und Stalking.<br>
+            Er hat aber noch nie jemanden gebissen.<br><br>
+
+            Mittlerweile konnte Stalker Benni glücklicherweise wieder resozialisiert werden<br>
+            und in die Gesellschaft aufgenommen werden.<br><br>
+
+            Im Folgenden einige Erfahrungsberichte und Rezensionen erster Hand!
+            <br>
+        </p>
+    
+    </div>
+
+    <div class="container">
+        
+        <h2>📖 Bericht verfassen</h2>
+        <div class="comment-box">
+            <div class="floating-image" style="top: 30px; right: 30px; width: 15%;">
+                <img src="20erTafel.jpg">
+                <p class="caption"></p>
+            </div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="Name">
+            <br><br>
+            <label for="message">Eigene Erfahrungen:</label>
+            <textarea id="message" placeholder=""></textarea>
+            <br><br>
+            <label for="preisRating">Preis-Leistung:</label>
+            <select id="preisRating">
+                <option value="1">⭐</option>
+                <option value="2">⭐⭐</option>
+                <option value="3">⭐⭐⭐</option>
+                <option value="4">⭐⭐⭐⭐</option>
+                <option value="5">⭐⭐⭐⭐⭐</option>
+            </select>
+            <br><br>
+
+            <label for="optikRating">Optik:</label>
+            <select id="optikRating">
+                <option value="1">⭐</option>
+                <option value="2">⭐⭐</option>
+                <option value="3">⭐⭐⭐</option>
+                <option value="4">⭐⭐⭐⭐</option>
+                <option value="5">⭐⭐⭐⭐⭐</option>
+            </select>
+            <br><br>
+
+            <label for="komfortRating">Optik:</label>
+            <select id="komfortRating">
+                <option value="1">⭐</option>
+                <option value="2">⭐⭐</option>
+                <option value="3">⭐⭐⭐</option>
+                <option value="4">⭐⭐⭐⭐</option>
+                <option value="5">⭐⭐⭐⭐⭐</option>
+            </select>
+            <br><br>
+            
+            <button onclick="postComment()">Post Comment</button>
+        </div>
+        
+        <h3>Erfahrungsberichte:</h3>
+        <ul id="comments-list"></ul>
+    </div>
+
+
+    <script>
+        function postComment() {
+    const name = document.getElementById("name").value.trim();
+    const message = document.getElementById("message").value.trim();
+    const formattedMessage = message.replace(/\n/g, "<br>");
+    const preis = document.getElementById("preisRating").value;
+    const optik = document.getElementById("optikRating").value;
+    const komfort = document.getElementById("komfortRating").value;
+
+    if (!name || !message) {
+        alert("Bitte gib einen Namen und eine Nachricht ein!");
+        return;
+    }
+
+    const commentBox = `
+        <div class="bewertung-box">
+            <strong class="bewertung-user">${name}</strong>
+            <p class="bewertung-text">${formattedMessage}</p>
+            <div class="bewertung-kategorien">
+                <div><strong>Preis-Leistung:</strong> ${'★'.repeat(preis)}</div>
+                <div><strong>Optik:</strong> ${'★'.repeat(optik)}</div>
+                <div><strong>Komfort:</strong> ${'★'.repeat(komfort)}</div>
+            </div>
+        </div>
+    `;
+
+    document.getElementById("comments-list").innerHTML += commentBox;
+
+    // Zurücksetzen der Felder
+    document.getElementById("name").value = "";
+    document.getElementById("message").value = "";
+    document.getElementById("preisRating").value = "1";
+    document.getElementById("optikRating").value = "1";
+    document.getElementById("komfortRating").value = "1";
+}
+    </script>
+</body>
+</html>
