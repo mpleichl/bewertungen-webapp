@@ -43,11 +43,11 @@ body {
 /* Einzelne Bewertungsbox */
 .bewertung-box {
   margin-left: -10px;
-  border: 1px solid #ccc;        /* Dünner grauer Rahmen um die Box :contentReference[oaicite:2]{index=2}*/
+  border: 2px solid #ccc;        /* Dünner grauer Rahmen um die Box :contentReference[oaicite:2]{index=2}*/
   border-radius: 5px;           /* Leicht abgerundete Ecken für ein modernes, weiches Aussehen */
   padding: 1rem;                /* Innenabstand für saubere Lesbarkeit des Inhalts */
   margin-bottom: 1rem;          /* Außenabstand zur nächsten Box */
-  background: #fdfdfd;          /* Hellhintergrund (fast weiß) für Kontrast zum Seitenhintergrund */
+  background: #b7b9bb;         /* Hellhintergrund (fast weiß) für Kontrast zum Seitenhintergrund */
   box-sizing: border-box;       /* Padding und Border in die Gesamtbreite einrechnen */
   overflow-wrap: break-word;
 }
