@@ -42,6 +42,7 @@ body {
 
 /* Einzelne Bewertungsbox */
 .bewertung-box {
+  margin-left: -10px;
   border: 1px solid #ccc;        /* Dünner grauer Rahmen um die Box :contentReference[oaicite:2]{index=2}*/
   border-radius: 5px;           /* Leicht abgerundete Ecken für ein modernes, weiches Aussehen */
   padding: 1rem;                /* Innenabstand für saubere Lesbarkeit des Inhalts */
@@ -164,29 +165,19 @@ body {
 
 @media (max-width: 768px) {
   .floating-image {
-    position: static !important;
-    width: 100% !important;
-    margin: 10px auto !important;
-    display: block !important;
-    text-align: center;
+    position: static;         /* nicht mehr absolut */
+    width: 80% !important;    /* Breite anpassen */
+    margin: 20px auto;        /* zentrieren */
   }
 
   .floating-image img {
-    width: 100%;
+    width: 100%;              /* skaliert automatisch */
     height: auto;
-    margin: auto;
   }
 
   .persDescription,
   .comment-box {
-    font-size: 18px;
+    font-size: 18px;          /* evtl. Schrift leicht verkleinern */
     padding: 10px;
-    margin: 10px;
-  }
-
-  .bewertung-box {
-    margin: 10px;
   }
 }
-
-
