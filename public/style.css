@@ -5,7 +5,7 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: beige;
+    background-color:  rgb(157, 185, 201);
 }
 
 .container {
@@ -35,7 +35,7 @@ body {
     max-width: 1200px;
     background-color: #b7b9bb;
     text-align: left;
-    font-family: cursive;
+    font-family: Sans-serif;
     font-size:20px;
     overflow: hidden;
 }
@@ -105,7 +105,7 @@ body {
     max-width: 1200px;
     background-color: #b7b9bb;
     text-align: left;
-    font-family: cursive;
+    font-family: Sans-serif;
     font-size:20px;
     overflow: hidden;
 }
