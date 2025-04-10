@@ -164,19 +164,29 @@ body {
 
 @media (max-width: 768px) {
   .floating-image {
-    position: static;         /* nicht mehr absolut */
-    width: 80% !important;    /* Breite anpassen */
-    margin: 20px auto;        /* zentrieren */
+    position: static !important;
+    width: 100% !important;
+    margin: 10px auto !important;
+    display: block !important;
+    text-align: center;
   }
 
   .floating-image img {
-    width: 100%;              /* skaliert automatisch */
+    width: 100%;
     height: auto;
+    margin: auto;
   }
 
   .persDescription,
   .comment-box {
-    font-size: 18px;          /* evtl. Schrift leicht verkleinern */
+    font-size: 18px;
     padding: 10px;
+    margin: 10px;
+  }
+
+  .bewertung-box {
+    margin: 10px;
   }
 }
+
+
